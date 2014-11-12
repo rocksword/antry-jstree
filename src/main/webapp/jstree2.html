@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jsTree</title>
+<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" />
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="robots" content="index,follow" />
+<link rel="stylesheet" href="./assets/docs.css" />
+
+<link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon-precomposed" href="./assets/apple-touch-icon-precomposed.png" />-->
+<link rel="stylesheet" href="./assets/dist/themes/proton/style.css" />
+<style>
+.proton-demo {
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+}
+</style>
+<script src="./assets/jquery-1.10.2.min.js"></script>
+<script src="./assets/dist/jstree.min.js"></script>
+<script>
+    var treeData = [ {
+        "text" : "UTM",
+        "state" : {
+            "opened" : true
+        },
+        "children" : [ {
+            "text" : "SuperMassive"
+        }, {
+            "text" : "PRO Series"
+        }, {
+            "text" : "NSA Series"
+        }, {
+            "text" : "TZ Series"
+        } ]
+    }, {
+        "text" : "SRA",
+        "state" : {
+            "opened" : true
+        },
+        "children" : [ {
+            "text" : "SSL VPN"
+        }, {
+            "text" : "Aventail"
+        } ]
+    }, {
+        "text" : "APP",
+        "state" : {
+            "opened" : true
+        },
+        "children" : [ {
+            "text" : "Email Security"
+        }, {
+            "text" : "GMS Appliance"
+        } ]
+    } ];
+
+    var data = {
+        "a" : [ "aaa1", "aaa2" ],
+        "b" : [ "b1", "b2" ]
+    };
+
+    var treeData2 = [];
+    for ( var key in data) {
+        console.log(key);
+        var arr = data[key];
+        var leafNodes = [];
+        for ( var i in arr) {
+            console.log(arr[i]);
+            leafNodes.push({
+                "text" : arr[i]
+            });
+        }
+        treeData2.push({
+            "text" : key,
+            "state" : {
+                "opened" : true
+            },
+            "children" : leafNodes
+        });
+    }
+
+    $(document).ready(function() {
+        $('#jstree-proton-3').jstree({
+            'plugins' : [ "wholerow", "checkbox" ],
+            'core' : {
+                'data' : treeData2,
+                'themes' : {
+                    'name' : 'proton',
+                    'responsive' : true
+                }
+            }
+        });
+        $('#jstree-proton-3').on("changed.jstree", function(e, data) {
+            console.log(data.selected);
+            var ele = $(($(data.selected).toArray())[0]);
+            console.log(ele);
+            console.log(ele.id);
+            console.log(data.selected.length);
+        });
+    });
+</script>
+</head>
+<body>
+     <div class="container" id="content">
+          <div class="col-md-12">
+               <div id="jstree-proton-3" style="margin-top: 20px;"></div>
+          </div>
+     </div>
+</body>
+</html>
